@@ -36,6 +36,11 @@ moodle3_session_cookie_lifetime: "0"
 moodle3_session_gc_probability: "1"
 moodle3_session_gc_divisor: "100"
 moodle3_session_gc_maxlifetime: "1440"
+moodle3_opcache_enable: "1"
+moodle3_opcache_enable_cli: "0"
+moodle3_opcache_max_accelerated_files: "8000"
+moodle3_opcache_revalidate_freq: "60"
+moodle3_opcache_revalidate_path: "0"
 
 # Credentials for creating the moodle3 DB
 moodle3_mariadb_login_username:
