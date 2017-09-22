@@ -3,4 +3,3 @@
   get_url:
     url: "{{ moodle3_download_url }}{{ moodle3_tarball }}"
     dest: "/tmp/{{ moodle3_tarball }}"
-    checksum: "md5:{{ moodle3_md5sum }}"
