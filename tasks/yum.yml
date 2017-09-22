@@ -1,4 +1,12 @@
 ---
+
+- name: Remove potentially conflicting yum packages
+  yum:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - php
+
 - name: Install yum packages
   yum:
     name: "{{ item }}"
@@ -9,24 +17,24 @@
   - mod_php
   - MySQL-python
   - patch
-  - php
-  - php-iconv
-  - php-mbstring
-  - php-curl
-  - php-openssl
-  - php-tokenizer
-  - php-xmlrpc
-  - php-soap
-  - php-ctype
-  - php-zip
-  - php-gd
-  - php-simplexml
-  - php-spl
-  - php-pcre
-  - php-dom
-  - php-xml
-  - php-intl
-  - php-json
-  - php-ldap
-  - php-mysql
+  - rh-php56-php
+  - rh-php56-php-iconv
+  - rh-php56-php-mbstring
+  - rh-php56-php-curl
+  - rh-php56-php-openssl
+  - rh-php56-php-tokenizer
+  - rh-php56-php-xmlrpc
+  - rh-php56-php-soap
+  - rh-php56-php-ctype
+  - rh-php56-php-zip
+  - rh-php56-php-gd
+  - rh-php56-php-simplexml
+  - rh-php56-php-spl
+  - rh-php56-php-pcre
+  - rh-php56-php-dom
+  - rh-php56-php-xml
+  - rh-php56-php-intl
+  - rh-php56-php-json
+  - rh-php56-php-ldap
+  - rh-php56-php-mysql
   - python-pip

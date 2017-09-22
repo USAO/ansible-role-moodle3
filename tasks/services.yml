@@ -6,3 +6,4 @@
     enabled: yes
   with_items:
   - httpd
+  - rh-php56-php-fpm

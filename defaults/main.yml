@@ -27,6 +27,16 @@ moodle3_site_password:
 moodle3_site_email:
 moodle3_site_wwwroot: "https://{{ moodle3_site_name }}.{{ httpd_dn_suffix }}"
 
+# moodle3 php settings
+moodle3_memory_limit: "128M"
+moodle3_post_max_size: "70M"
+moodle3_upload_max_filesize: "64M"
+moodle3_date_timezone: "America/Chicago"
+moodle3_session_cookie_lifetime: "0"
+moodle3_session_gc_probability: "1"
+moodle3_session_gc_divisor: "100"
+moodle3_session_gc_maxlifetime: "1440"
+
 # Credentials for creating the moodle3 DB
 moodle3_mariadb_login_username:
 moodle3_mariadb_login_password:

@@ -5,32 +5,28 @@
   - httpd_can_network_connect_db
   - httpd_can_sendmail
 
-- name: Set upload_max_filesize
-  replace:
-    dest: /etc/php.ini
-    regexp: >
-      ^upload_max_filesize = 2M$
-    replace: "upload_max_filesize = 20M"
-
-- name: Set post_max_size
-  replace:
-    dest: /etc/php.ini
-    regexp: >
-      ^post_max_size = 8M$
-    replace: "post_max_size = 24M"
-
-- name: Set PHP timezone
-  replace:
-    dest: /etc/php.ini
-    regexp: >
-      ^;date.timezone =$
-    replace: "date.timezone = America/Chicago"
 
 - name: Add config include to http.conf
   lineinfile:
     state: present
     dest: /etc/httpd/conf/httpd.conf
     line: "IncludeOptional \"{{ moodle3_parent_dir }}/*/etc/*.conf\""
+
+- name: Configure Apache for PHP-FPM
+  copy:
+    src: php-fpm.conf
+    dest: /etc/httpd/conf.d/php-fpm.conf
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Template php.ini
+  template:
+    src: php.ini.j2
+    dest: /etc/opt/rh/rh-php56/php.ini
+    mode: 0644
+    owner: root
+    group: wheel
 
 - name: Add moodle3 apache config
   template:
