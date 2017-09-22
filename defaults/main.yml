@@ -1,0 +1,44 @@
+---
+# defaults file for moodle3
+
+# dev, test, prod, vagrant, etc.
+environment_name:
+
+# Used for apache Servername and cert config
+httpd_dn_suffix:
+
+
+# We'll end up fetching
+# {{ moodle3_download_url }}{{ moodle3_tarball }}
+moodle3_version: 33
+moodle3_md5sum: 39d8d9ab02120a8967739a275a04decf
+moodle3_download_url: "https://download.moodle.org/download.php/direct/stable{{ moodle3_version }}/"
+moodle3_tarball: "moodle-latest-{{ moodle3_version }}.tgz"
+
+# configurable filepaths
+moodle3_parent_dir: /srv
+
+# The naked hostname for the site, not the FQDN
+moodle3_site_name: moodle
+
+# moodle3 site info
+moodle3_site_username:
+moodle3_site_password:
+moodle3_site_email:
+moodle3_site_wwwroot: "https://{{ moodle3_site_name }}.{{ httpd_dn_suffix }}"
+
+# Credentials for creating the moodle3 DB
+moodle3_mariadb_login_username:
+moodle3_mariadb_login_password:
+
+# DB Client config
+# For connection
+moodle3_mariadb_host: localhost
+moodle3_mariadb_port: 3306
+moodle3_mariadb_username: "moodle_{{ moodle3_version | replace('.', '-') }}_{{ moodle3_site_name | replace('.', '-') }}_{{environment_name | replace('.', '-') }}"
+# For user priviliges
+moodle3_mariadb_userhost: localhost
+moodle3_mariadb_password:
+moodle3_mariadb_database: "moodle_{{ moodle3_version | replace('.', '-') }}_{{ moodle3_site_name | replace('.', '-') }}_{{environment_name | replace('.', '-') }}"
+moodle3_mariadb_privileges: "SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,INDEX,ALTER,CREATE TEMPORARY TABLES,LOCK TABLES,GRANT"
+moodle3_mariadb_append_privs: no

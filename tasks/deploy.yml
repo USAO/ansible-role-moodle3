@@ -1,0 +1,35 @@
+---
+- name: moodle3 site directory exists
+  file:
+    path: "{{ moodle3_parent_dir }}/{{ moodle3_site_name }}"
+    state: directory
+    mode: 0775
+    owner: root
+    group: wheel
+
+- name: moodle3 subdirectories exists
+  file:
+    path: "{{ moodle3_parent_dir }}/{{ moodle3_site_name }}/{{ item }}"
+    state: directory
+    mode: 0775
+    owner: apache
+    group: apache
+  with_items:
+    - db
+    - etc
+    - moodledata
+    - snapshots
+
+- name: Unarchive moodle
+  unarchive:
+    src: "/tmp/{{ moodle3_tarball }}"
+    dest: "{{ moodle3_parent_dir }}/{{ moodle3_site_name }}/moodle-{{ moodle3_version }}"
+    owner: apache
+    group: apache
+    copy: no
+
+- name: Link moodle-$version directory to moodle
+  file:
+    src: "{{ moodle3_parent_dir }}/{{ moodle3_site_name }}/moodle-{{ moodle3_version }}"
+    path: "{{ moodle3_parent_dir }}/{{ moodle3_site_name }}/moodle"
+    state: link

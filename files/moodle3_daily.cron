@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+PATH=/opt/usao/moodle3/bin:/usr/local/bin:/usr/bin:/bin:/sbin:$PATH
+
+printf "Searching for moodle sites.\n"
+find -L /srv -maxdepth 1 -mindepth 1 -type d 2>/dev/null | while read -r SITEPATH ; do
+  # Check for config.inc.php
+  stat ${SITEPATH}/moodle/config.php &>/dev/null
+  if [ "$?" -eq "0" ]; then
+    printf "Backing up ${SITEPATH}\n"
+    /opt/usao/moodle3/bin/moodle3_snapshot.sh ${SITEPATH}
+  fi
+done
+
+printf "Done.\n"

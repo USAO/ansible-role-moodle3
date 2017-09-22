@@ -1,0 +1,69 @@
+---
+- name: Set SELinux exceptions for apache
+  command: "setsebool -P {{ item }} on"
+  with_items:
+  - httpd_can_network_connect_db
+  - httpd_can_sendmail
+
+- name: Set upload_max_filesize
+  replace:
+    dest: /etc/php.ini
+    regexp: >
+      ^upload_max_filesize = 2M$
+    replace: "upload_max_filesize = 20M"
+
+- name: Set post_max_size
+  replace:
+    dest: /etc/php.ini
+    regexp: >
+      ^post_max_size = 8M$
+    replace: "post_max_size = 24M"
+
+- name: Set PHP timezone
+  replace:
+    dest: /etc/php.ini
+    regexp: >
+      ^;date.timezone =$
+    replace: "date.timezone = America/Chicago"
+
+- name: Add config include to http.conf
+  lineinfile:
+    state: present
+    dest: /etc/httpd/conf/httpd.conf
+    line: "IncludeOptional \"{{ moodle3_parent_dir }}/*/etc/*.conf\""
+
+- name: Add moodle3 apache config
+  template:
+    src: srv_moodle3.conf.j2
+    dest: "{{ moodle3_parent_dir }}/{{ moodle3_site_name }}/etc/srv_moodle3.conf"
+    owner: root
+    group: wheel
+    mode: 0664
+
+- name: Add moodle3 app config
+  template:
+    src: config.php.j2
+    dest: "{{ moodle3_parent_dir }}/{{ moodle3_site_name }}/moodle-{{ moodle3_version }}/config.php"
+    owner: apache
+    group: apache
+    mode: 0664
+
+- name: Set default SELinux context for etc subdirectory
+  command: >
+    semanage fcontext -a -t httpd_config_t  "{{ moodle3_parent_dir }}/{{ moodle3_site_name }}/etc(/.*)?"
+  become: true
+
+- name: Set default SELinux context for moodle3 subdirectory
+  command: >
+    semanage fcontext -a -t httpd_sys_rw_content_t  "{{ moodle3_parent_dir }}/{{ moodle3_site_name }}/moodle-{{ moodle3_version }}(/.*)?"
+  become: true
+
+- name: Set default SELinux context for moodledata subdirectory
+  command: >
+    semanage fcontext -a -t httpd_sys_rw_content_t  "{{ moodle3_parent_dir }}/{{ moodle3_site_name }}/moodledata(/.*)?"
+  become: true
+
+- name: Restore default SELinux context for moodle3
+  command: >
+    restorecon -rv {{ moodle3_parent_dir }}/{{ moodle3_site_name }}
+  become: true

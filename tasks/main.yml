@@ -1,0 +1,34 @@
+---
+# tasks file for moodle3
+
+- include: yum.yml
+  become: true
+  tags: moodle3_yum
+
+- include: pip.yml
+  become: true
+  tags: moodle3_pip
+
+- include: assets.yml
+  become: true
+  tags: moodle3_assets
+
+- include: get.yml
+  become: true
+  tags: moodle3_get
+
+- include: deploy.yml
+  become: true
+  tags: moodle3_deploy
+
+- include: configure.yml
+  become: true
+  tags: moodle3_configure
+
+- include: database.yml
+  become: true
+  tags: moodle3_database
+
+- include: services.yml
+  become: true
+  tags: moodle3_services

@@ -1,0 +1,32 @@
+---
+- name: Install yum packages
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+  - gcc
+  - mariadb
+  - mod_php
+  - MySQL-python
+  - patch
+  - php
+  - php-iconv
+  - php-mbstring
+  - php-curl
+  - php-openssl
+  - php-tokenizer
+  - php-xmlrpc
+  - php-soap
+  - php-ctype
+  - php-zip
+  - php-gd
+  - php-simplexml
+  - php-spl
+  - php-pcre
+  - php-dom
+  - php-xml
+  - php-intl
+  - php-json
+  - php-ldap
+  - php-mysql
+  - python-pip

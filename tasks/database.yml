@@ -1,0 +1,21 @@
+---
+- name: moodle3 database
+  mysql_db:
+    name: "{{ moodle3_mariadb_database }}"
+    login_host: "{{ moodle3_mariadb_host }}"
+    login_port: "{{ moodle3_mariadb_port }}"
+    login_user: "{{ moodle3_mariadb_login_username }}"
+    login_password: "{{ moodle3_mariadb_login_password }}"
+    state: present
+- name: moodle3 user for database
+  mysql_user:
+    name: "{{ moodle3_mariadb_username }}"
+    host: "{{ moodle3_mariadb_userhost }}"
+    password: "{{ moodle3_mariadb_password }}"
+    priv: "{{ moodle3_mariadb_database }}.*:{{ moodle3_mariadb_privileges }}"
+    append_privs: "{{ moodle3_mariadb_append_privs }}"
+    login_host: "{{ moodle3_mariadb_host }}"
+    login_port: "{{ moodle3_mariadb_port }}"
+    login_user: "{{ moodle3_mariadb_login_username }}"
+    login_password: "{{ moodle3_mariadb_login_password }}"
+    state: present

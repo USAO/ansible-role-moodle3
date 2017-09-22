@@ -1,0 +1,49 @@
+---
+- name: Ensure /opt/usao/moodle3/bin exists
+  file:
+    path: /opt/usao/moodle3/bin
+    state: directory
+    mode: 0755
+    owner: root
+    group: wheel
+    recurse: yes
+
+- name: scripts to /opt/usao/moodle3/bin
+  copy:
+    src: "{{ item }}"
+    dest: /opt/usao/moodle3/bin/
+    mode: 0755
+    owner: root
+    group: wheel
+  with_items:
+      - moodle3_dump.sh
+      - moodle3_importdb.sh
+      - moodle3_restore.sh
+      - moodle3_snapshot.sh
+
+- name: Ensure /opt/usao/moodle3/etc exists
+  file:
+    path: /opt/usao/moodle3/etc
+    state: directory
+    mode: 0755
+    owner: root
+    group: wheel
+    recurse: yes
+
+- name: Install moodle3 config
+  copy:
+    src: moodle3_conf.sh
+    dest: /opt/usao/moodle3/etc/moodle3_conf.sh
+    owner: root
+    group: wheel
+    mode: 0444
+
+- name: Install cron scripts
+  copy:
+    src: "{{ item }}"
+    dest: /etc/cron.daily/
+    mode: 0755
+    owner: root
+    group: wheel
+  with_items:
+      - moodle3_daily.cron
