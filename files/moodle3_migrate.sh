@@ -26,13 +26,12 @@ dest_basename=$(basename "$dest_moodledir")
 src_cfg=$(ssh ${src_moodlehost} cat ${src_cfgdir}/config.php)
 
 # Set vars from it.
-src_cfg=/tmp/config.php
-src_dbhost=`cat $src_cfg | grep '^$CFG->dbhost' | cut -d "=" -f 2 | cut -d ';' -f 1 | xargs`
-src_dbname=`cat $src_cfg | grep '^$CFG->dbname' | cut -d "=" -f 2 | cut -d ';' -f 1 | xargs`
-src_dbuser=`cat $src_cfg | grep '^$CFG->dbuser' | cut -d "=" -f 2 | cut -d ';' -f 1 | xargs`
-src_dbpass=`cat $src_cfg | grep '^$CFG->dbpass' | cut -d "=" -f 2 | cut -d ';' -f 1 | xargs`
-src_wwwroot=`cat $src_cfg | grep '^$CFG->wwwroot' | cut -d "=" -f 2 | cut -d ';' -f 1 | xargs`
-src_dataroot=`cat $src_cfg | grep '^$CFG->dataroot' | cut -d "=" -f 2 | cut -d ';' -f 1 | xargs`
+src_dbhost=`echo "${src_cfg}" | grep '^$CFG->dbhost' | cut -d "=" -f 2 | cut -d ';' -f 1 | xargs`
+src_dbname=`echo "${src_cfg}" | grep '^$CFG->dbname' | cut -d "=" -f 2 | cut -d ';' -f 1 | xargs`
+src_dbuser=`echo "${src_cfg}" | grep '^$CFG->dbuser' | cut -d "=" -f 2 | cut -d ';' -f 1 | xargs`
+src_dbpass=`echo "${src_cfg}" | grep '^$CFG->dbpass' | cut -d "=" -f 2 | cut -d ';' -f 1 | xargs`
+src_wwwroot=`echo "${src_cfg}" | grep '^$CFG->wwwroot' | cut -d "=" -f 2 | cut -d ';' -f 1 | xargs`
+src_dataroot=`echo "${src_cfg}" | grep '^$CFG->dataroot' | cut -d "=" -f 2 | cut -d ';' -f 1 | xargs`
 
 
 # Sync over the moodledata
