@@ -42,3 +42,9 @@ ssh ${src_moodlehost} mysqldump --single-transaction --lock-tables=false --allow
 
 # change sitename in db dump.
 sed -e "s#${src_wwwroot}#${moodle3wwwroot}#g" ${dest_moodledir}/db/moodle3_${src_moodlehost}_dump.sql > ${dest_moodledir}/db/moodle3_${dest_basename}_dump.sql
+
+# Import our newly munged database
+/opt/usao/moodle3/bin/moodle3_importdb.sh ${dest_moodledir}
+
+# Upgrade our db to the installed codebase
+/opt/usao/moodle3/bin/moodle3_upgrade.sh ${dest_moodledir}
