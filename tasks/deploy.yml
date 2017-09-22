@@ -19,6 +19,7 @@
     - etc
     - moodledata
     - snapshots
+    - "moodle-{{ moodle3_version }}"
 
 - name: Unarchive moodle
   unarchive:
@@ -27,6 +28,8 @@
     owner: apache
     group: apache
     copy: no
+    extra_opts:
+      - "--strip-components=1"
 
 - name: Link moodle-$version directory to moodle
   file:

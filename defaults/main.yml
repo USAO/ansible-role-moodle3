@@ -35,10 +35,10 @@ moodle3_mariadb_login_password:
 # For connection
 moodle3_mariadb_host: localhost
 moodle3_mariadb_port: 3306
-moodle3_mariadb_username: "moodle_{{ moodle3_version | replace('.', '-') }}_{{ moodle3_site_name | replace('.', '-') }}_{{environment_name | replace('.', '-') }}"
+moodle3_mariadb_username: "mdl{{ moodle3_version | replace('.', '-') }}_{{environment_name | replace('.', '-') }}"
 # For user priviliges
 moodle3_mariadb_userhost: localhost
 moodle3_mariadb_password:
-moodle3_mariadb_database: "moodle_{{ moodle3_version | replace('.', '-') }}_{{ moodle3_site_name | replace('.', '-') }}_{{environment_name | replace('.', '-') }}"
+moodle3_mariadb_database: "mdl{{ moodle3_version | replace('.', '-') }}_{{ moodle3_site_name | replace('.', '-') }}_{{environment_name | replace('.', '-') }}"
 moodle3_mariadb_privileges: "SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,INDEX,ALTER,CREATE TEMPORARY TABLES,LOCK TABLES,GRANT"
 moodle3_mariadb_append_privs: no
