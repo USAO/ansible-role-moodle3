@@ -1,11 +1,11 @@
 ---
 
-- name: Remove potentially conflicting yum packages
+- name: Install Redhat Software Collections
   yum:
     name: "{{ item }}"
-    state: absent
+    state: present
   with_items:
-    - php
+  - centos-release-scl
 
 - name: Install yum packages
   yum:
@@ -17,7 +17,8 @@
   - mod_php
   - MySQL-python
   - patch
-  - rh-php56-php
+  - rh-php56
+  - rh-php56-php-fpm
   - rh-php56-php-iconv
   - rh-php56-php-mbstring
   - rh-php56-php-curl
@@ -38,3 +39,10 @@
   - rh-php56-php-ldap
   - rh-php56-php-mysql
   - python-pip
+
+- name: Remove potentially conflicting yum packages
+  yum:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - php
