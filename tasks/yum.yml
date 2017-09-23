@@ -19,6 +19,7 @@
   - patch
   - rh-php56
   - rh-php56-php-fpm
+  - rh-php56-php-opcache
   - rh-php56-php-iconv
   - rh-php56-php-mbstring
   - rh-php56-php-curl
