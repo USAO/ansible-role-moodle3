@@ -5,7 +5,6 @@
   - httpd_can_network_connect_db
   - httpd_can_sendmail
 
-
 - name: Add config include to http.conf
   lineinfile:
     state: present
@@ -71,3 +70,9 @@
   command: >
     restorecon -rv {{ moodle3_parent_dir }}/{{ moodle3_site_name }}
   become: true
+
+- name: Apache user is a member of the clamscan group
+  user:
+    name: apache
+    groups: clamscan
+    append: yes

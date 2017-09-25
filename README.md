@@ -27,6 +27,10 @@ Dependencies
   version: v2017-06-06.0
   name: OULibraries.centos7
 
+- src: https://github.com/USAO/ansible-role-clamav
+  version: master
+  name: USAO.clamav
+
 - src: https://github.com/OULibraries/ansible-role-mariadb
   version: v2016-09-26.0
   name: OULibraries.mariadb
