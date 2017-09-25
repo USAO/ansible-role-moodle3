@@ -51,6 +51,14 @@
     group: apache
     mode: 0664
 
+- name: Add moodle3 app defaults
+  copy:
+    src: defaults.php
+    dest: "{{ moodle3_parent_dir }}/{{ moodle3_site_name }}/moodle-{{ moodle3_version }}/local/defaults.php"
+    owner: apache
+    group: apache
+    mode: 0664
+
 - name: Set default SELinux context for etc subdirectory
   command: >
     semanage fcontext -a -t httpd_config_t  "{{ moodle3_parent_dir }}/{{ moodle3_site_name }}/etc(/.*)?"
