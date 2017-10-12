@@ -1,7 +1,7 @@
 USAO.moodle3
 =========
 
-Moodle 3.x for University of Science and Arts of Oklahoma
+Moodle 3.x for University of Science and Arts of Oklahoma.
 
 Requirements
 ------------
@@ -42,6 +42,21 @@ Dependencies
 - src: https://github.com/OULibraries/ansible-role-users
   version: v2017-05-09.0
   name: OULibraries.users
+```
+
+Usage
+-----
+
+Does not touch crontab as described in the [docs](https://docs.moodle.org/33/en/Cron).
+
+After installing, you need to edit apache's crontab
+```
+sudo crontab -u apache -e
+```
+
+And set your php to run cron for each Moodle site hosted on the system.
+```
+*/1 * * * * /opt/rh/rh-php56/root/bin/php  /srv/moodle/sitename/admin/cli/cron.php >/dev/null
 ```
 
 Example Playbook
