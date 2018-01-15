@@ -6,9 +6,9 @@
   SSLCertificateChainFile ${HTTPD_CERT_PATH}/star.{{ httpd_dn_suffix }}/chain.pem
 
   ServerName {{ moodle3_site_name }}.{{ httpd_dn_suffix }}
-  DocumentRoot {{moodle3_parent_dir }}/{{ moodle3_site_name }}/moodle
+  DocumentRoot {{moodle3_parent_dir }}/{{ moodle3_site_name }}//moodle-{{ moodle3_version }}
 
-  <Directory "{{moodle3_parent_dir }}/{{ moodle3_site_name }}/moodle">
+  <Directory "{{moodle3_parent_dir }}/{{ moodle3_site_name }}//moodle-{{ moodle3_version }}">
     Options Indexes FollowSymLinks
     AllowOverride All
     Order allow,deny
