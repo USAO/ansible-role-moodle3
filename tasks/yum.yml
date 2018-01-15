@@ -38,7 +38,7 @@
   - rh-php71-php-intl
   - rh-php71-php-json
   - rh-php71-php-ldap
-  - rh-php71-php-mysql
+  - rh-php71-php-mysqlnd
   - python-pip
 
 - name: Remove potentially conflicting yum packages
