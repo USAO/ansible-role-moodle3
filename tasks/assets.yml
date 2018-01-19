@@ -21,6 +21,7 @@
       - moodle3_migrate.sh
       - moodle3_restore.sh
       - moodle3_snapshot.sh
+      - moodle3_truncate_reg_hubs.sh
       - moodle3_upgrade.sh
 
 - name: Ensure /opt/usao/moodle3/etc exists
