@@ -2,8 +2,6 @@
 
 PATH=/opt/usao/moodle3/bin:/usr/local/bin:/usr/bin:/bin:/sbin:$PATH
 
-source /opt/usao/moodle3/etc/moodle3_conf.sh
-
 if [  -z "$1" ]; then
     cat <<USAGE
 moodle3_snapshot.sh creates a db dump and tar backup for a site.
@@ -18,6 +16,8 @@ the lowercase day-of-week abbreviation for the current day.
 USAGE
     exit 1;
 fi
+
+source /opt/usao/moodle3/etc/moodle3_conf.sh
 
 SITEPATH=$1
 SITE=$(basename "$SITEPATH")
