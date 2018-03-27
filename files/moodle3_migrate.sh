@@ -3,8 +3,6 @@
 
 PATH=/opt/usao/moodle3/bin:/usr/local/bin:/usr/bin:/bin:/sbin:$PATH
 
-source /opt/usao/moodle3/etc/moodle3_conf.sh
-
 ## Require arguments
 if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ] ; then
     cat <<USAGE
@@ -16,6 +14,8 @@ Usage: moodle3_migrate.sh \$dest_moodledir \$src_moodlehost \$src_cfgdir
 USAGE
     exit 1;
 fi
+
+source /opt/usao/moodle3/etc/moodle3_conf.sh
 
 dest_moodledir=${1}
 src_moodlehost=${2}

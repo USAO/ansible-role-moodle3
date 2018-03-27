@@ -10,8 +10,8 @@ httpd_dn_suffix:
 
 # We'll end up fetching
 # {{ moodle3_download_url }}{{ moodle3_tarball }}
-moodle3_version: 33
-moodle3_md5sum: 39d8d9ab02120a8967739a275a04decf
+moodle3_version: 34
+moodle3_md5sum: 854e1a8232508598e1ef52985ffdca89
 moodle3_download_url: "https://download.moodle.org/download.php/direct/stable{{ moodle3_version }}/"
 moodle3_tarball: "moodle-latest-{{ moodle3_version }}.tgz"
 

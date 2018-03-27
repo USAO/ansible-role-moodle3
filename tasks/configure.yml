@@ -22,7 +22,7 @@
 - name: Template php.ini for SCL PHP
   template:
     src: php.ini.j2
-    dest: /etc/opt/rh/rh-php56/php.ini
+    dest: /etc/opt/rh/rh-php71/php.ini
     mode: 0644
     owner: root
     group: wheel
@@ -30,7 +30,7 @@
 - name: Configure OpCache for SCL PHP
   template:
     src: 10-opcache.ini.j2
-    dest: /etc/opt/rh/rh-php56/php.d/10-opcache.ini
+    dest: /etc/opt/rh/rh-php71/php.d/10-opcache.ini
     mode: 0644
     owner: root
     group: wheel

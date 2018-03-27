@@ -56,7 +56,7 @@ sudo crontab -u apache -e
 
 And set your php to run cron for each Moodle site hosted on the system.
 ```
-*/1 * * * * /opt/rh/rh-php56/root/bin/php  /srv/moodle/sitename/admin/cli/cron.php >/dev/null
+*/1 * * * * /opt/rh/rh-php71/root/bin/php  /srv/moodle/sitename/admin/cli/cron.php >/dev/null
 ```
 
 Example Playbook

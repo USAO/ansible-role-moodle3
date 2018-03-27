@@ -30,9 +30,3 @@
     copy: no
     extra_opts:
       - "--strip-components=1"
-
-- name: Link moodle-$version directory to moodle
-  file:
-    src: "{{ moodle3_parent_dir }}/{{ moodle3_site_name }}/moodle-{{ moodle3_version }}"
-    path: "{{ moodle3_parent_dir }}/{{ moodle3_site_name }}/moodle"
-    state: link
